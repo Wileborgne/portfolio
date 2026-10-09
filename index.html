@@ -64,6 +64,11 @@ ul{list-style:none}
 #fiche-image .frame .img{filter:none;transform:none}
 .frame .img::after{content:"";position:absolute;inset:0;background:var(--frame-shade);transition:opacity .25s}
 .frame.scrub .img::after{opacity:.35}
+/* Balayage vidéo au survol (pages de catégorie, à la souris) : une planche de 30 images par projet */
+.frame .sc{position:absolute;inset:0;background-repeat:no-repeat;background-size:600% 500%;transform:scale(1.03);opacity:0;pointer-events:none}
+.frame.scrub.has-sc .sc{opacity:1}
+.frame.has-sc .on-ttl{transition:opacity .2s}
+.frame.scrub.has-sc .on-ttl{opacity:0}
 .frame .on-ttl,.frame .on-meta,.frame .tc{text-shadow:0 1px 12px var(--frame-shade)}
 .frame .tag,.frame .tc{position:absolute;font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;line-height:1;padding:5px 7px;background:var(--frame-shade);font-variant-numeric:tabular-nums}
 .frame .tag{top:10px;left:10px;text-transform:uppercase}
@@ -488,6 +493,30 @@ dialog::backdrop{background:var(--scrim)}
   rowsEl.addEventListener('pointerover', follow);
   rowsEl.addEventListener('focusin', follow);
 
+  // Balayage vidéo : scrub/<id>.webp est une planche de 30 images (6 colonnes × 5 lignes) tirées de la vidéo.
+  // Elle n'est chargée qu'au premier survol ; sans planche, le survol reste comme avant.
+  var SC_COLS = 6, SC_ROWS = 5, scState = {};
+  function scrubFrame(f, id, x){
+    var s = scState[id];
+    if (!s) {
+      s = scState[id] = {ok:false, url:'scrub/' + id + '.webp'};
+      var im = new Image();
+      im.onload = function(){ s.ok = true; if (s.f && s.f === last) scrubFrame(s.f, id, s.x); };
+      im.src = s.url;
+    }
+    s.f = f; s.x = x;
+    if (!s.ok) return;
+    var el = f.querySelector('.sc');
+    if (!el) {
+      el = document.createElement('span'); el.className = 'sc';
+      el.style.backgroundImage = 'url(' + s.url + ')';
+      f.insertBefore(el, f.querySelector('.img').nextSibling);
+    }
+    var n = SC_COLS * SC_ROWS, i = Math.min(n - 1, Math.floor(x * n));
+    el.style.backgroundPosition = (i % SC_COLS) / (SC_COLS - 1) * 100 + '% ' + Math.floor(i / SC_COLS) / (SC_ROWS - 1) * 100 + '%';
+    f.classList.add('has-sc');
+  }
+
   // Survol d'une image : la tête de lecture suit le curseur et le timecode défile
   function reset(){
     if (!last) return;
@@ -507,6 +536,8 @@ dialog::backdrop{background:var(--scrim)}
     f.classList.add('scrub');
     var t = f.querySelector('.tc'); if (t) t.textContent = tc(x * +f.getAttribute('data-dur'));
     last = f;
+    var c = f.closest('.grid') ? f.closest('[data-id]') : null;
+    if (c) scrubFrame(f, c.getAttribute('data-id'), x);
   });
   document.addEventListener('pointerleave', reset);
 
