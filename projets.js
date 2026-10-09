@@ -51,7 +51,7 @@ window.PORTFOLIO = {
     {id:'zqTms53SpSE', vimeo:'1234453428', client:'IMV Origin', title:'Toyota', cat:'commercials', prod:'Pelican Paris', dur:585, w:3840, h:2160},
     {id:'FAqbWhKquCw', vimeo:'1234453835', client:'Vogue', title:'L’Hôtel des Grands Voyageurs', cat:'fashion', prod:'Notorious Vision', dur:209, w:3840, h:2160},
     {id:'XblEkjAbL7A', vimeo:'1234453684', client:'Suuuply', title:'Part 2', cat:'fashion', prod:'Suite.302', dur:30, w:3840, h:2160},
-    {id:'43k5dKVnkqg', client:'Dior', title:'RTW FW25, Cutdown', cat:'fashion', prod:'Tender Night', dur:28, w:1080, h:1080},
+    {id:'43k5dKVnkqg', vimeo:'1234456425', client:'Dior', title:'RTW FW25, Cutdown', cat:'fashion', prod:'Tender Night', dur:28, w:1080, h:1080},
     {id:'v1234435243', vimeo:'1234435243', client:'L’Oréal', title:'Blurfiller', cat:'fashion', prod:'Agence Major', dur:22, w:1080, h:1920, pos:'50% 31%'},
     {id:'i_wU6QTO8Xk', vimeo:'1234453407', client:'Dior', title:'Pre-Fall 2025, Cutdown', cat:'fashion', prod:'Tender Night', dur:35, w:1080, h:1350, pos:'50% 32%'},
     {id:'ORqMHsj87Wk', vimeo:'1234453389', client:'Dior', title:'Cruise 2025, Cutdown', cat:'fashion', prod:'Tender Night', dur:27, w:1080, h:1920, pos:'50% 38%'},
