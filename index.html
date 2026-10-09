@@ -67,6 +67,8 @@ ul{list-style:none}
 /* Balayage vidéo au survol (pages de catégorie, à la souris) : une planche de 30 images par projet */
 .frame .sc{position:absolute;inset:0;background-repeat:no-repeat;background-size:600% 500%;transform:scale(1.03);opacity:0;pointer-events:none}
 .frame.scrub.has-sc .sc{opacity:1}
+/* Accueil : le balayage affiche de grandes images séparées (scrub/hd/<id>/00.webp … 29.webp), cadrées comme la vignette */
+.frame img.sc{width:100%;height:100%;object-fit:cover;transform:none}
 .frame.has-sc .on-ttl{transition:opacity .2s}
 .frame.scrub.has-sc .on-ttl{opacity:0}
 .frame .on-ttl,.frame .on-meta,.frame .tc{text-shadow:0 1px 12px var(--frame-shade)}
@@ -517,6 +519,35 @@ dialog::backdrop{background:var(--scrim)}
     f.classList.add('has-sc');
   }
 
+  // Accueil : même balayage, avec 30 grandes images par projet, chargées au premier survol.
+  // Tant qu'une image n'est pas arrivée, on montre la plus proche déjà chargée ; sans images, le survol reste comme avant.
+  var HD_N = 30, hdState = {};
+  function scrubHero(f, p, x){
+    if (!p) return;
+    var s = hdState[p.id];
+    if (!s) {
+      s = hdState[p.id] = {ims:[], ok:[]};
+      for (var k = 0; k < HD_N; k++) (function(k){
+        var im = new Image();
+        im.onload = function(){ s.ok[k] = true; if (s.f && s.f === last) scrubHero(s.f, p, s.x); };
+        im.src = 'scrub/hd/' + p.id + '/' + pad(k) + '.webp';
+        s.ims[k] = im;
+      })(k);
+    }
+    s.f = f; s.x = x;
+    var i = Math.min(HD_N - 1, Math.floor(x * HD_N)), j = -1;
+    for (var d = 0; d < HD_N && j < 0; d++) { if (s.ok[i - d]) j = i - d; else if (s.ok[i + d]) j = i + d; }
+    if (j < 0) return;
+    var el = f.querySelector('.sc');
+    if (!el) {
+      el = document.createElement('img'); el.className = 'sc'; el.alt = ''; el.draggable = false;
+      if (p.pos) el.style.objectPosition = p.pos;
+      f.insertBefore(el, f.querySelector('.img').nextSibling);
+    }
+    if (el.getAttribute('data-k') !== String(j)) { el.setAttribute('data-k', j); el.src = s.ims[j].src; }
+    f.classList.add('has-sc');
+  }
+
   // Survol d'une image : la tête de lecture suit le curseur et le timecode défile
   function reset(){
     if (!last) return;
@@ -536,8 +567,9 @@ dialog::backdrop{background:var(--scrim)}
     f.classList.add('scrub');
     var t = f.querySelector('.tc'); if (t) t.textContent = tc(x * +f.getAttribute('data-dur'));
     last = f;
-    var c = f.closest('.grid') ? f.closest('[data-id]') : null;
-    if (c) scrubFrame(f, c.getAttribute('data-id'), x);
+    var c = f.closest('[data-id]');
+    if (c && f.closest('.grid')) scrubFrame(f, c.getAttribute('data-id'), x);
+    else if (c && f.closest('.hero')) scrubHero(f, byId(c.getAttribute('data-id')), x);
   });
   document.addEventListener('pointerleave', reset);
 

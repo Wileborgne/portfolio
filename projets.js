@@ -23,6 +23,7 @@
 // La vignette de chaque projet est le fichier img/<id>.jpg
 // Le balayage au survol (sur ordinateur) utilise scrub/<id>.webp : une planche
 // de 30 images tirées de la vidéo. Sans ce fichier, le survol reste simple.
+// Sur l'accueil, le balayage utilise 30 grandes images : scrub/hd/<id>/00.webp … 29.webp
 // ─────────────────────────────────────────────────────────────────────────────
 window.PORTFOLIO = {
 
