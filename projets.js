@@ -12,7 +12,7 @@
 //           cette vidéo qui se lit sur le site. Sans « vimeo », le site lit
 //           la vidéo YouTube dont l'identifiant est dans « id ».
 //   client  ce qui s'affiche en caractères droits        (ex. 'Dior')
-//   title   ce qui s'affiche en italique, peut être vide (ex. 'Cruise 2025, Cutdown')
+//   title   le titre du projet, affiché après le client ; peut être vide (ex. 'Cruise 2025, Cutdown')
 //   cat     'commercials', 'fashion' ou 'clips'
 //   prod    société de production (facultatif)
 //   dur     durée en secondes
@@ -39,7 +39,7 @@ window.PORTFOLIO = {
 
   projets: [
     {id:'rSKDmKK25dQ', vimeo:'1234453005', client:'Abela x Puma', title:'Marscup 2025', cat:'commercials', prod:'Dépendant.tv', dur:84, w:2880, h:2160},
-    {id:'Fy452HRgJP0', vimeo:'1234453003', client:'Adidas', title:'We Recup Le City', cat:'commercials', prod:'Henry.tv', dur:123, w:2880, h:2160},
+    {id:'Fy452HRgJP0', vimeo:'1234453003', client:'Adidas', title:'We Recup Le City, CDM 2026', cat:'commercials', prod:'Henry.tv', dur:123, w:2880, h:2160},
     {id:'7vOPFDqmCSk', vimeo:'1234453007', client:'Adidas x Footlocker', title:'Megaride', cat:'commercials', prod:'Ocurens', dur:45, w:3148, h:2160},
     {id:'3F7smypVw-E', vimeo:'1234453008', client:'Adidas x RC Lens', title:'(Co Edit)', cat:'commercials', prod:'Clutch Agency', dur:108, w:3840, h:2160},
     {id:'v1234435083', vimeo:'1234435083', client:'Balenciaga', title:'Winter 26, Cutdown', cat:'fashion', prod:'Ultramotion', dur:30, w:1920, h:1080},
