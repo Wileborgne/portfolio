@@ -412,9 +412,7 @@ dialog::backdrop{background:var(--scrim)}
       : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0&playsinline=1';
     $('fiche-image').innerHTML = '<div class="player" style="aspect-ratio:' + p.w + '/' + p.h + ';width:min(100%,calc(72vh*' + (p.w / p.h).toFixed(4) + '))">' +
       '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
-    $('fiche-lien').innerHTML = p.vimeo
-      ? '<a href="https://vimeo.com/' + encodeURIComponent(p.vimeo) + '" target="_blank" rel="noopener">Ouvrir sur Vimeo</a>'
-      : '<a href="https://youtu.be/' + encodeURIComponent(p.id) + '" target="_blank" rel="noopener">Ouvrir sur YouTube</a>';
+    $('fiche-lien').hidden = true; // pas de lien vers YouTube ou Vimeo : la vidéo se lit dans la fiche
     var rows = [['Catégorie', catLabel(p.cat)]];
     if (p.prod) rows.push(['Production', p.prod]);
     rows.push(['Durée', dur(p.dur)], ['Format', ratio(p)]);
