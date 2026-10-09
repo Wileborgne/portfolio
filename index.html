@@ -161,7 +161,7 @@ dialog::backdrop{background:var(--scrim)}
 .who .clock{font-variant-numeric:tabular-nums}
 
 /* Accueil : la bobine. Un segment par projet, large selon sa durée ; le segment en cours se remplit, puis on coupe au suivant. */
-.home{display:grid;gap:8px;grid-template-columns:minmax(0,1fr)}
+.home{display:grid;gap:8px;grid-template-columns:minmax(0,1fr);touch-action:pan-y}
 .reel{display:flex;gap:3px}
 .seg{flex:1 1 0;min-width:6px;padding-block:8px}
 .seg i{display:block;position:relative;height:2px;overflow:hidden;background:var(--line)}
@@ -365,6 +365,25 @@ dialog::backdrop{background:var(--scrim)}
     if (seg && seg.classList && seg.classList.contains('on')) setHero(heroIdx + 1);
   });
 
+  // Accueil : glisser le doigt vers la gauche ou la droite pour changer de projet ; flèches du clavier sur ordinateur
+  var swipe = null, swiped = 0;
+  homeEl.addEventListener('touchstart', function(e){
+    swipe = e.touches.length === 1 ? {x: e.touches[0].clientX, y: e.touches[0].clientY} : null;
+  }, {passive: true});
+  homeEl.addEventListener('touchend', function(e){
+    if (!swipe) return;
+    var t = e.changedTouches[0], dx = t.clientX - swipe.x, dy = t.clientY - swipe.y;
+    swipe = null;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.5) return; // trop court, ou geste vertical : on laisse défiler la page
+    swiped = Date.now();
+    setHero(heroIdx + (dx < 0 ? 1 : -1));
+  }, {passive: true});
+  document.addEventListener('keydown', function(e){
+    if (page !== 'accueil' || dlg.open) return;
+    if (e.key === 'ArrowRight') setHero(heroIdx + 1);
+    else if (e.key === 'ArrowLeft') setHero(heroIdx - 1);
+  });
+
   function render(){
     CATS.forEach(function(c){
       var b = $('nav-' + c.id);
@@ -449,7 +468,7 @@ dialog::backdrop{background:var(--scrim)}
     var sg = t.closest('[data-seg]');
     if (sg) { setHero(+sg.getAttribute('data-seg')); return; }
     var item = t.closest('[data-id]');
-    if (item) { var p = byId(item.getAttribute('data-id')); if (p) openSheet(p); return; }
+    if (item) { if (Date.now() - swiped < 600) return; var p = byId(item.getAttribute('data-id')); if (p) openSheet(p); return; }
     if (t === dlg || t.closest('#fiche-fermer')) closeSheet();
   });
 
