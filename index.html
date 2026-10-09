@@ -353,7 +353,7 @@ dialog::backdrop{background:var(--scrim)}
     return '<button type="button" class="card hero" id="une" data-id="' + p.id + '">' + frame(p, false, heroMeta(p)) + '</button>' +
       '<div class="reel" role="group" aria-label="Go to another project">' + REEL.map(function(q, i){
         return '<button type="button" class="seg' + (i < heroIdx ? ' done' : i === heroIdx ? ' on' : '') + '" id="seg-' + i + '" data-seg="' + i +
-          '" style="flex-grow:' + q.dur + '" aria-label="' + esc(q.title ? (q.client ? q.client + ', ' : '') + q.title : q.client) + '"><i></i></button>';
+          '" aria-label="' + esc(q.title ? (q.client ? q.client + ', ' : '') + q.title : q.client) + '"><i></i></button>';
       }).join('') + '</div>';
   }
   function setHero(i){
