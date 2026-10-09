@@ -28,7 +28,7 @@ window.PORTFOLIO = {
   ],
 
   // Projets qui défilent sur la page d'accueil, dans l'ordre (le premier s'affiche à l'ouverture)
-  accueil: ['Cdu5zcQfwuk', 'rSKDmKK25dQ', 'v1234393871', 'w7AkoAj93mE', 'zNQsuU9eatI', 'iV9vFxP0dE8', '0WZ2EgmN9OI', 'Fy452HRgJP0'],
+  accueil: ['Cdu5zcQfwuk', 'rSKDmKK25dQ', 'v1234393871', 'v1234435243', 'zNQsuU9eatI', 'iV9vFxP0dE8', '0WZ2EgmN9OI', 'Fy452HRgJP0'],
 
   projets: [
     {id:'rSKDmKK25dQ', client:'Abela x Puma', title:'Marscup 2025', cat:'commercials', prod:'Dépendant.tv', dur:84, w:2880, h:2160},
@@ -47,10 +47,11 @@ window.PORTFOLIO = {
     {id:'FAqbWhKquCw', client:'Vogue', title:'L’Hôtel des Grands Voyageurs', cat:'fashion', prod:'Notorious Vision', dur:209, w:3840, h:2160},
     {id:'XblEkjAbL7A', client:'Suuuply', title:'Part 2', cat:'fashion', prod:'Suite.302', dur:30, w:3840, h:2160},
     {id:'43k5dKVnkqg', client:'Dior', title:'RTW FW25, Cutdown', cat:'fashion', prod:'Tender Night', dur:28, w:1080, h:1080},
-    {id:'w7AkoAj93mE', client:'L’Oréal', title:'Blurfiller', cat:'fashion', prod:'Agence Major', dur:22, w:1080, h:1920, pos:'50% 31%'},
+    {id:'v1234435243', vimeo:'1234435243', client:'L’Oréal', title:'Blurfiller', cat:'fashion', prod:'Agence Major', dur:22, w:1080, h:1920, pos:'50% 31%'},
     {id:'i_wU6QTO8Xk', client:'Dior', title:'Pre-Fall 2025, Cutdown', cat:'fashion', prod:'Tender Night', dur:35, w:1080, h:1350, pos:'50% 32%'},
     {id:'ORqMHsj87Wk', client:'Dior', title:'Cruise 2025, Cutdown', cat:'fashion', prod:'Tender Night', dur:27, w:1080, h:1920, pos:'50% 38%'},
     {id:'THnRFZ2od44', client:'Vivienne Westwood', title:'AW25-26, Cutdown', cat:'fashion', prod:'Studio Prémices', dur:24, w:1080, h:1350, pos:'50% 12%'},
+    {id:'v1234435083', vimeo:'1234435083', client:'Balenciaga', title:'Winter 26, Cutdown', cat:'fashion', dur:30, w:1920, h:1080},
     {id:'iV9vFxP0dE8', client:'TH', title:'Pokemon (Dircut)', cat:'clips', prod:'Ocurens', dur:179, w:2880, h:2160},
     {id:'9r8XVoGtFAY', client:'Lazarra', title:'Tu t’en iras', cat:'clips', dur:282, w:1920, h:1080},
     {id:'v1234393872', vimeo:'1234393872', client:'Sean', title:'CDC', cat:'clips', prod:'Tierse', dur:211, w:1440, h:1080},
