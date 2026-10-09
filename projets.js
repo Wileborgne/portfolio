@@ -15,6 +15,7 @@
 //   title   le titre du projet, affiché après le client ; peut être vide (ex. 'Cruise 2025, Cutdown')
 //   cat     'commercials', 'fashion' ou 'clips'
 //   prod    société de production (facultatif)
+//   post    société de postproduction (facultatif)
 //   dur     durée en secondes
 //   w, h    largeur et hauteur de la vidéo (pour le format du lecteur)
 //   pos     cadrage de la vignette dans la grille, facultatif (ex. '50% 30%' :
@@ -39,13 +40,13 @@ window.PORTFOLIO = {
 
   projets: [
     {id:'rSKDmKK25dQ', vimeo:'1234453005', client:'Abela x Puma', title:'Marscup 2025', cat:'commercials', prod:'Dépendant.tv', dur:84, w:2880, h:2160},
-    {id:'Fy452HRgJP0', vimeo:'1234453003', client:'Adidas', title:'We Recup Le City, CDM 2026', cat:'commercials', prod:'Henry.tv', dur:123, w:2880, h:2160},
+    {id:'Fy452HRgJP0', vimeo:'1234453003', client:'Adidas', title:'We Recup Le City, CDM 2026', cat:'commercials', prod:'Henry.tv', post:'Disguys Fx', dur:123, w:2880, h:2160},
     {id:'7vOPFDqmCSk', vimeo:'1234453007', client:'Adidas x Footlocker', title:'Megaride', cat:'commercials', prod:'Ocurens', dur:45, w:3148, h:2160},
     {id:'3F7smypVw-E', vimeo:'1234453008', client:'Adidas x RC Lens', title:'(Co Edit)', cat:'commercials', prod:'Clutch Agency', dur:108, w:3840, h:2160},
-    {id:'v1234435083', vimeo:'1234435083', client:'Balenciaga', title:'Winter 26, Cutdown', cat:'fashion', prod:'Ultramotion', dur:30, w:1920, h:1080},
+    {id:'v1234435083', vimeo:'1234435083', client:'Balenciaga', title:'Winter 26, Cutdown', cat:'fashion', post:'Ultramotion Studio', dur:30, w:1920, h:1080},
     {id:'Cdu5zcQfwuk', vimeo:'1234453243', client:'Dior', title:'Golden Globes 2026, Mia Goth', cat:'fashion', prod:'Protest Studios', dur:34, w:3840, h:2160},
-    {id:'0WZ2EgmN9OI', vimeo:'1234453197', client:'Copin', title:'Short Story 1', cat:'fashion', prod:'Ocurens', dur:34, w:2880, h:2160},
-    {id:'n5q4Q5-5Hes', vimeo:'1234453203', client:'Copin', title:'Short Story 3', cat:'fashion', prod:'Ocurens', dur:22, w:2880, h:2160},
+    {id:'0WZ2EgmN9OI', vimeo:'1234453197', client:'Copin', title:'Short Story 1', cat:'fashion', prod:'Ocurens', post:'Monumental Fx', dur:34, w:2880, h:2160},
+    {id:'n5q4Q5-5Hes', vimeo:'1234453203', client:'Copin', title:'Short Story 3', cat:'fashion', prod:'Ocurens', post:'Monumental Fx', dur:22, w:2880, h:2160},
     {id:'Qajm__kvcCw', vimeo:'1234453217', client:'Courir x Jordan', title:'', cat:'fashion', prod:'Dépendant.tv', dur:15, w:2880, h:2160},
     {id:'8UShGoeVpi4', vimeo:'1234453356', client:'Dior', title:'César 2026, Nadia Melliti', cat:'fashion', prod:'Protest Studios', dur:33, w:1920, h:1080},
     {id:'blVoF5dfInw', vimeo:'1234453646', client:'So La Lune x Malik Bentalha', title:'Bercy', cat:'commercials', prod:'Henry.tv', dur:80, w:1440, h:1080},
@@ -59,13 +60,13 @@ window.PORTFOLIO = {
     {id:'i_wU6QTO8Xk', vimeo:'1234453407', client:'Dior', title:'Pre-Fall 2025, Cutdown', cat:'fashion', prod:'Tender Night', dur:35, w:1080, h:1350, pos:'50% 32%'},
     {id:'ORqMHsj87Wk', vimeo:'1234453389', client:'Dior', title:'Cruise 2025, Cutdown', cat:'fashion', prod:'Tender Night', dur:27, w:1080, h:1920, pos:'50% 38%'},
     {id:'THnRFZ2od44', vimeo:'1234453771', client:'Vivienne Westwood', title:'AW25-26, Cutdown', cat:'fashion', prod:'Studio Prémices', dur:24, w:1080, h:1350, pos:'50% 12%'},
-    {id:'iV9vFxP0dE8', vimeo:'1234453757', client:'TH', title:'Pokemon (Dircut)', cat:'clips', prod:'Ocurens', dur:179, w:2880, h:2160},
+    {id:'iV9vFxP0dE8', vimeo:'1234453757', client:'TH', title:'Pokemon (Dircut)', cat:'clips', prod:'Ocurens', post:'Monumental Fx', dur:179, w:2880, h:2160},
     {id:'9r8XVoGtFAY', vimeo:'1234453452', client:'Lazarra', title:'Tu t’en iras', cat:'clips', prod:'Trichrome', dur:282, w:1920, h:1080},
     {id:'v1234393872', vimeo:'1234393872', client:'Sean', title:'CDC', cat:'clips', prod:'Tierse', dur:211, w:1440, h:1080},
     {id:'v1234393874', vimeo:'1234393874', client:'Teodore x Green Montana', title:'MM', cat:'clips', prod:'Tierse', dur:121, w:1440, h:1080},
-    {id:'v1234393873', vimeo:'1234393873', client:'Yvnnis', title:'Emoticone', cat:'clips', prod:'Dépendant.tv', dur:155, w:1440, h:1080},
-    {id:'v1234393871', vimeo:'1234393871', client:'La Fève', title:'2026', cat:'clips', prod:'Henry.tv', dur:218, w:1920, h:1080},
-    {id:'v1234397501', vimeo:'1234397501', client:'Silva', title:'Bedouin', cat:'clips', prod:'Ocurens', dur:162, w:1440, h:1080},
-    {id:'v1234397502', vimeo:'1234397502', client:'Eva', title:'Body', cat:'clips', prod:'Henry.tv', dur:145, w:1920, h:1080}
+    {id:'v1234393873', vimeo:'1234393873', client:'Yvnnis', title:'Emoticone', cat:'clips', prod:'Dépendant.tv', post:'Mathematic.tv', dur:155, w:1440, h:1080},
+    {id:'v1234393871', vimeo:'1234393871', client:'La Fève', title:'2026', cat:'clips', prod:'Henry.tv', post:'Disguys Fx', dur:218, w:1920, h:1080},
+    {id:'v1234397501', vimeo:'1234397501', client:'Silva', title:'Bedouin', cat:'clips', prod:'Ocurens', post:'Monumental Fx', dur:162, w:1440, h:1080},
+    {id:'v1234397502', vimeo:'1234397502', client:'Eva', title:'Body', cat:'clips', prod:'Henry.tv', post:'Disguys Fx', dur:145, w:1920, h:1080}
   ]
 };
