@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>William Coutard, monteur vidéo à Paris</title>
+<meta name="description" content="Portfolio de William Coutard, monteur vidéo à Paris : commercials, fashion &amp; luxury, music videos.">
+<meta name="theme-color" content="#0D0F11">
+<meta property="og:title" content="William Coutard, monteur vidéo">
+<meta property="og:description" content="Commercials, fashion &amp; luxury, music videos.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0F11'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23E8EBEE'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=DM+Mono:wght@400;500&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+img{max-width:100%}
+/* Mise en page : nom à gauche, catégories en petit menu en haut à droite.
+   L'accueil ne montre qu'un seul projet, en grand ; chaque catégorie ouvre sa propre page. */
+/* Un seul thème, volontairement : fond noir partout, quel que soit le réglage clair/sombre de l'appareil. */
+:root{
+  --bg:#0D0F11; --fg:#E8EBEE; --muted:#8A9299; --line:#242A30; --accent:#7CA4FF;
+  --scrim:rgba(0,0,0,.8);
+  --frame-fg:#F1F3F5; --frame-shade:rgba(8,10,12,.26); --frame-bg:#15181B;
+  --font-display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --t-small:.75rem; --t-base:.9375rem; --t-title:1.0625rem;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:var(--t-base);line-height:1.45;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+ul,dl,dd,h1,h2,p{margin:0;padding:0}
+ul{list-style:none}
+
+.wrap{max-width:1440px;margin-inline:auto;padding-inline:clamp(16px,4vw,56px);padding-block:clamp(20px,3vw,36px) clamp(40px,6vw,80px);display:grid;gap:clamp(28px,4vw,48px);grid-template-columns:minmax(0,1fr)}
+
+/* En-tête : nom à gauche, menu à droite */
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px 32px}
+.who{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.who h1{font-size:var(--t-title);font-weight:600;letter-spacing:.01em}
+.who h1 button{font-weight:inherit;letter-spacing:inherit}
+.who span{font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.menu{display:flex;flex-wrap:wrap;gap:8px 24px;font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;text-transform:uppercase}
+.menu button{color:var(--muted);text-transform:inherit;letter-spacing:inherit;padding-block:2px;border-bottom:1px solid transparent;transition:color .2s}
+.menu button:hover{color:var(--fg)}
+.menu button[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+
+/* Image d'un projet : la vraie vignette, légèrement assombrie, avec le titre écrit dessus */
+.frame{--mi:10px;--m:12px;display:block;position:relative;width:100%;max-width:100%;aspect-ratio:16/9;overflow:hidden;color:var(--frame-fg);background:var(--frame-bg)}
+.frame .img{position:absolute;inset:0;background-size:cover;background-position:center;filter:blur(1.6px);transform:scale(1.03);transition:filter .25s}
+.hero .frame .img{filter:none;transform:none}
+.frame.scrub .img{filter:none}
+#fiche-image .frame .img{filter:none;transform:none}
+.frame .img::after{content:"";position:absolute;inset:0;background:var(--frame-shade);transition:opacity .25s}
+.frame.scrub .img::after{opacity:.35}
+.frame .on-ttl,.frame .on-meta,.frame .tc{text-shadow:0 1px 12px var(--frame-shade)}
+.frame .tag,.frame .tc{position:absolute;font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;line-height:1;padding:5px 7px;background:var(--frame-shade);font-variant-numeric:tabular-nums}
+.frame .tag{top:10px;left:10px;text-transform:uppercase}
+.frame .tc{left:50%;bottom:calc(var(--mi) + 2px);transform:translateX(-50%);padding:0;background:none}
+.frame .on-meta{position:absolute;top:calc(var(--mi) + 8px);left:calc(var(--mi) + 10px);font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;line-height:1;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.frame .on-ttl{position:absolute;inset:calc(var(--mi) + 26px) calc(var(--mi) + 14px);display:grid;place-items:center;text-align:center;font-size:var(--t-title);line-height:1.2;overflow-wrap:anywhere}
+.frame .on-ttl em{font-style:italic}
+/* Petit triangle « lecture » au-dessus du titre, dans les pages de catégorie */
+.cat .frame .on-ttl > span::before{content:"";display:block;width:0;height:0;margin:0 auto 10px;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent var(--frame-fg)}
+.hero .frame .on-ttl{inset:calc(var(--mi) + 34px) calc(var(--mi) + 20px);font-size:clamp(1.35rem,3.2vw,2.75rem);line-height:1.08;text-wrap:balance}
+.hero .frame .on-meta{top:calc(var(--mi) + 12px);left:calc(var(--mi) + 16px)}
+.hero .frame .tc{bottom:calc(var(--mi) + 4px)}
+.card:hover .on-ttl{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.frame::after{content:"";position:absolute;top:0;bottom:0;left:calc(var(--x,0) * 100%);width:1px;background:var(--frame-fg);opacity:0;transition:opacity .15s}
+.frame.scrub::after{opacity:.9}
+
+/* Cartes projet */
+.card{display:grid;gap:12px;width:100%;grid-template-columns:minmax(0,1fr)}
+.cap{display:grid;gap:3px;min-width:0}
+.ttl{font-size:var(--t-title);line-height:1.25;overflow-wrap:anywhere}
+.ttl em{font-style:italic}
+.meta{font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.04em;color:var(--muted);font-variant-numeric:tabular-nums}
+.card:hover .ttl{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+
+/* Accueil : un seul projet, en grand */
+.hero .frame{max-height:min(72vh,780px)}
+.hero{gap:16px}
+.home .cap{grid-template-columns:minmax(0,1fr);gap:4px}
+@media (min-width:640px){.home .cap{grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 24px}}
+.home .ttl{font-size:clamp(1.25rem,2.3vw,1.9rem);line-height:1.15}
+
+/* Page catégorie */
+.cat{display:grid;gap:clamp(24px,3vw,40px);grid-template-columns:minmax(0,1fr)}
+.cat-head{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+.cat-head h2{font-family:var(--font-display);font-stretch:62%;font-weight:650;font-size:clamp(2.25rem,6vw,4.5rem);line-height:.92;letter-spacing:-.01em;text-transform:uppercase;overflow-wrap:anywhere}
+.bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:var(--t-small);color:var(--muted)}
+.views{display:flex;gap:18px}
+.views button{letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-block:2px;border-bottom:1px solid transparent}
+.views button:hover{color:var(--fg)}
+.views button[aria-pressed="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,3.5vw,52px) clamp(16px,2vw,28px)}
+@media (min-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1040px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.index{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.preview{display:none}
+@media (min-width:960px){
+  .index{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:start}
+  .preview{display:grid;gap:12px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px)}
+}
+.rows{border-bottom:1px solid var(--line)}
+.row{display:grid;grid-template-columns:minmax(0,1fr);align-items:baseline;gap:4px 24px;width:100%;padding-block:clamp(14px,1.6vw,20px);border-top:1px solid var(--line);transition:color .2s}
+@media (min-width:640px){.row{grid-template-columns:minmax(0,1fr) auto}}
+.row .ttl{font-size:clamp(1.25rem,2.3vw,1.9rem);line-height:1.15;min-width:0}
+.row .meta{display:flex;gap:18px;white-space:nowrap}
+@media (hover:hover){.rows:hover .row:not(:hover){color:var(--muted)}}
+
+/* Fiche projet */
+dialog{border:0;padding:0;background:var(--bg);color:var(--fg);width:min(1080px,calc(100% - 32px));max-width:none;max-height:calc(100% - 32px);overflow:auto}
+dialog::backdrop{background:var(--scrim)}
+.sheet{display:grid;gap:20px;padding:clamp(16px,2.4vw,28px);grid-template-columns:minmax(0,1fr)}
+#fiche-image{display:grid;justify-items:center;grid-template-columns:minmax(0,1fr)}
+.sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.sheet-head h2{font-size:clamp(1.25rem,2.4vw,1.75rem);font-weight:500;line-height:1.2;text-wrap:balance;min-width:0;overflow-wrap:anywhere}
+.close{font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);flex:none}
+.close:hover{color:var(--fg)}
+.credits{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:16px 24px;padding-top:16px;border-top:1px solid var(--line)}
+.credits dt{font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.credits dd{font-variant-numeric:tabular-nums}
+.watch{font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.04em;color:var(--muted)}
+.watch a{color:var(--fg);text-underline-offset:4px}
+
+/* Contact */
+.contact{display:grid;gap:18px;margin-top:clamp(16px,3vw,40px);padding-top:clamp(24px,3vw,40px);border-top:1px solid var(--line);grid-template-columns:minmax(0,1fr)}
+.contact h2{font-family:var(--font-mono);font-size:var(--t-small);font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.mail{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 20px}
+.addr{font-size:clamp(1.0625rem,1.6vw,1.375rem);font-weight:500;line-height:1.2;overflow-wrap:anywhere;min-width:0;user-select:all}
+.mail button{font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--accent);padding-block:2px}
+.links{display:flex;flex-wrap:wrap;gap:6px 28px;font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.04em;color:var(--muted)}
+.links b{font-weight:400;color:var(--fg)}
+
+/* Grain de pellicule : une trame de bruit très légère posée sur toute la page */
+.grain{position:fixed;inset:0;z-index:5;pointer-events:none;background-repeat:repeat;animation:grain .9s steps(1) infinite}
+@keyframes grain{0%{background-position:0 0}17%{background-position:-41px 67px}33%{background-position:83px -29px}50%{background-position:-19px -91px}67%{background-position:57px 43px}83%{background-position:-73px 11px}}
+
+/* Repères de cadrage : quatre coins de viseur dans chaque image */
+.frame .marks{display:none;position:absolute;inset:var(--mi);pointer-events:none;opacity:.9;
+  background:
+    linear-gradient(var(--frame-fg),var(--frame-fg)) left top/var(--m) 1px no-repeat,
+    linear-gradient(var(--frame-fg),var(--frame-fg)) left top/1px var(--m) no-repeat,
+    linear-gradient(var(--frame-fg),var(--frame-fg)) right top/var(--m) 1px no-repeat,
+    linear-gradient(var(--frame-fg),var(--frame-fg)) right top/1px var(--m) no-repeat,
+    linear-gradient(var(--frame-fg),var(--frame-fg)) left bottom/var(--m) 1px no-repeat,
+    linear-gradient(var(--frame-fg),var(--frame-fg)) left bottom/1px var(--m) no-repeat,
+    linear-gradient(var(--frame-fg),var(--frame-fg)) right bottom/var(--m) 1px no-repeat,
+    linear-gradient(var(--frame-fg),var(--frame-fg)) right bottom/1px var(--m) no-repeat}
+.hero .frame,#fiche-image .frame{--mi:16px;--m:20px}
+.who .clock{font-variant-numeric:tabular-nums}
+
+/* Accueil : la bobine. Un segment par projet, large selon sa durée ; le segment en cours se remplit, puis on coupe au suivant. */
+.home{display:grid;gap:8px;grid-template-columns:minmax(0,1fr)}
+.reel{display:flex;gap:3px}
+.seg{flex:1 1 0;min-width:6px;padding-block:8px}
+.seg i{display:block;position:relative;height:2px;overflow:hidden;background:var(--line)}
+.seg i::after{content:"";position:absolute;inset:0;background:var(--fg);transform:scaleX(0);transform-origin:left center}
+.seg.done i::after{transform:scaleX(1);background:var(--muted)}
+.seg.on i::after{animation:run 4.5s linear forwards}
+.seg:hover i{background:var(--muted)}
+.home.paused .seg.on i::after{animation-play-state:paused}
+@media (hover:hover){.home:hover .seg.on i::after{animation-play-state:paused}}
+.home:focus-within .seg.on i::after{animation-play-state:paused}
+@keyframes run{to{transform:scaleX(1)}}
+
+/* Téléphone : en-tête sur deux lignes, menu sur une seule, image d'accueil plus haute */
+@media (max-width:520px){
+  .top{gap:14px}
+  .who{width:100%;gap:4px 12px}
+  .who .clock{display:none}
+  .menu{width:100%;justify-content:space-between;gap:8px 10px;font-size:.6875rem;letter-spacing:.02em}
+  .hero .frame{aspect-ratio:4/5;max-height:none}
+  .hero .frame .on-ttl{font-size:1.6rem}
+}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.grain{animation:none}.seg.on i::after{animation:none;transform:scaleX(1)}}
+
+/* Lecteur vidéo de la fiche projet */
+.player{position:relative;max-width:100%;background:#000}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+</style>
+</head>
+<body>
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <div class="who">
+      <h1><button type="button" id="nav-accueil" data-go="accueil">William Coutard</button></h1>
+      <span>Monteur vidéo · Paris</span>
+      <span class="clock" id="horloge" aria-hidden="true">00:00:00:00</span>
+    </div>
+    <nav class="menu" aria-label="Catégories">
+      <button type="button" id="nav-commercials" data-go="commercials">Commercials</button>
+      <button type="button" id="nav-fashion" data-go="fashion">Fashion &amp; Luxury</button>
+      <button type="button" id="nav-clips" data-go="clips">Music Videos</button>
+      <button type="button" id="nav-contact" data-scroll="contact">Contact</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="home" id="page-accueil" aria-label="Projets à la une"></section>
+
+    <section class="cat" id="page-cat" hidden>
+      <div class="cat-head">
+        <h2 id="cat-titre"></h2>
+        <div class="bar">
+          <span id="cat-note"></span>
+          <div class="views" id="vues" role="group" aria-label="Affichage">
+            <button type="button" id="vue-grille" data-view="grille">Grille</button>
+            <button type="button" id="vue-index" data-view="index">Index</button>
+          </div>
+        </div>
+      </div>
+      <ul class="grid" id="grille"></ul>
+      <div class="index" id="index" hidden>
+        <ul class="rows" id="lignes"></ul>
+        <div class="preview" id="apercu" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="contact" id="contact">
+    <h2>Contact</h2>
+    <div class="mail">
+      <span class="addr" id="adresse">wileborgne@gmail.com</span>
+      <button type="button" id="copier">Copier l'adresse</button>
+    </div>
+    <ul class="links">
+      <li><b>Instagram</b> <a href="https://www.instagram.com/wileborgne/" target="_blank" rel="noopener">@wileborgne</a></li>
+      <li><b>Basé à</b> Paris</li>
+    </ul>
+  </footer>
+</div>
+
+<dialog id="fiche" aria-labelledby="fiche-titre">
+  <div class="sheet">
+    <div class="sheet-head">
+      <h2 id="fiche-titre"></h2>
+      <button type="button" class="close" id="fiche-fermer">Fermer</button>
+    </div>
+    <div id="fiche-image"></div>
+    <p class="watch" id="fiche-lien"></p>
+    <dl class="credits" id="fiche-credits"></dl>
+  </div>
+</dialog>
+
+<script src="projets.js"></script>
+<script>
+(function(){
+  var FPS = 25; // cadence utilisée pour le timecode au survol
+
+  var CATS = window.PORTFOLIO.categories, REEL_IDS = window.PORTFOLIO.accueil, PROJECTS = window.PORTFOLIO.projets;
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function pad(n){ return (n < 10 ? '0' : '') + n; }
+  function dur(s){ return pad(Math.floor(s / 60)) + ':' + pad(s % 60); }
+  function tc(s){ var f = Math.round(s * FPS), t = Math.floor(f / FPS); return pad(Math.floor(t / 60)) + ':' + pad(t % 60) + ':' + pad(f % FPS); }
+  function catLabel(id){ for (var i = 0; i < CATS.length; i++) if (CATS[i].id === id) return CATS[i].label; return id; }
+  function isCat(id){ return CATS.some(function(c){ return c.id === id; }); }
+  function byId(id){ for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].id === id) return PROJECTS[i]; return null; }
+  function name(p){ return p.title ? (p.client ? esc(p.client) + ', ' : '') + '<em>' + esc(p.title) + '</em>' : esc(p.client); }
+  function ratio(p){
+    var r = p.w / p.h;
+    if (Math.abs(r - 4 / 3) < .02) return '4:3';
+    if (Math.abs(r - 16 / 9) < .02) return '16:9';
+    if (Math.abs(r - 1) < .02) return '1:1';
+    if (Math.abs(r - 9 / 16) < .02) return '9:16';
+    if (Math.abs(r - 4 / 5) < .02) return '4:5';
+    return r.toFixed(2).replace('.', ',') + ':1';
+  }
+
+  // Agrandit l'aperçu 16 x 9 par doublements successifs pour obtenir une image douce
+  function thumb(px){
+    try {
+      var rows = px.split('.'), c = document.createElement('canvas');
+      c.width = 16; c.height = 9;
+      var g = c.getContext('2d'), im = g.createImageData(16, 9);
+      for (var y = 0; y < 9; y++) {
+        var row = rows[y] || '';
+        for (var x = 0; x < 16; x++) {
+          var i = (y * 16 + x) * 4;
+          for (var k = 0; k < 3; k++) { var v = parseInt(row.charAt(x * 3 + k), 16); im.data[i + k] = isNaN(v) ? 24 : v * 17; }
+          im.data[i + 3] = 255;
+        }
+      }
+      g.putImageData(im, 0, 0);
+      var src = c, w = 16, h = 9;
+      while (w < 256) {
+        w *= 2; h *= 2;
+        var n = document.createElement('canvas'); n.width = w; n.height = h;
+        var ng = n.getContext('2d'); ng.imageSmoothingEnabled = true; ng.imageSmoothingQuality = 'high';
+        ng.drawImage(src, 0, 0, w, h);
+        src = n;
+      }
+      return src.toDataURL('image/jpeg', .86);
+    } catch (e) { return ''; }
+  }
+  PROJECTS.forEach(function(p){ p.img = p.px ? thumb(p.px) : ''; });
+
+  function frame(p, full, meta){
+    var st = full ? ' style="aspect-ratio:' + p.w + '/' + p.h + ';width:min(100%,calc(66vh*' + (p.w / p.h).toFixed(4) + '))"' : '';
+    return '<span class="frame" data-dur="' + p.dur + '"' + st + '>' +
+      '<span class="img" style="background-image:url(img/' + p.id + '.jpg)' + (p.img ? ',url(' + p.img + ')' : '') + (p.pos && !full ? ';background-position:' + p.pos : '') + '"></span>' +
+      '<span class="marks"></span>' + (meta ? '<span class="on-meta">' + meta + '</span>' : '') +
+      '<span class="tc">' + dur(p.dur) + '</span>' + (full ? '' : '<span class="on-ttl"><span>' + name(p) + '</span></span>') + '</span>';
+  }
+  function caption(p, withCat){
+    return '<span class="cap"><span class="ttl">' + name(p) + '</span>' + (withCat ? '<span class="meta">' + esc(catLabel(p.cat)) + '</span>' : '') + '</span>';
+  }
+
+  var page = 'accueil', view = 'grille';
+  try { var h = (location.hash || '').slice(1); if (isCat(h)) page = h; } catch (e) {}
+  try { var v = localStorage.getItem('portfolio-vue'); if (v === 'grille' || v === 'index') view = v; } catch (e) {}
+
+  var last = null; // image en cours de survol
+  var homeEl = $('page-accueil'), catEl = $('page-cat'), gridEl = $('grille'), indexEl = $('index'), rowsEl = $('lignes'), prevEl = $('apercu'), dlg = $('fiche');
+
+  function setPreview(p){ prevEl.innerHTML = p ? frame(p) : ''; }
+
+  // Accueil : un projet à la fois, et une bobine dessous pour passer de l'un à l'autre
+  var REEL = REEL_IDS.map(byId).filter(Boolean), heroIdx = 0;
+  if (!REEL.length) REEL = PROJECTS.slice();
+  function heroMeta(p){ return esc(catLabel(p.cat)) + ' · ' + pad(heroIdx + 1) + '/' + pad(REEL.length); }
+  function heroHTML(){
+    var p = REEL[heroIdx];
+    return '<button type="button" class="card hero" id="une" data-id="' + p.id + '">' + frame(p, false, heroMeta(p)) + '</button>' +
+      '<div class="reel" role="group" aria-label="Passer à un autre projet">' + REEL.map(function(q, i){
+        return '<button type="button" class="seg' + (i < heroIdx ? ' done' : i === heroIdx ? ' on' : '') + '" id="seg-' + i + '" data-seg="' + i +
+          '" style="flex-grow:' + q.dur + '" aria-label="' + esc(q.title ? (q.client ? q.client + ', ' : '') + q.title : q.client) + '"><i></i></button>';
+      }).join('') + '</div>';
+  }
+  function setHero(i){
+    var card = $('une');
+    if (!card) return;
+    heroIdx = (i + REEL.length) % REEL.length;
+    var p = REEL[heroIdx];
+    last = null;
+    card.setAttribute('data-id', p.id);
+    card.innerHTML = frame(p, false, heroMeta(p));
+    REEL.forEach(function(q, k){
+      var s = $('seg-' + k);
+      if (!s) return;
+      s.classList.remove('on', 'done');
+      if (k < heroIdx) s.classList.add('done');
+    });
+    var cur = $('seg-' + heroIdx);
+    if (cur) { void cur.offsetWidth; cur.classList.add('on'); }
+  }
+  homeEl.addEventListener('animationend', function(e){
+    var seg = e.target && e.target.parentNode;
+    if (seg && seg.classList && seg.classList.contains('on')) setHero(heroIdx + 1);
+  });
+
+  function render(){
+    CATS.forEach(function(c){
+      var b = $('nav-' + c.id);
+      if (!b) return;
+      if (c.id === page) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+    });
+
+    var home = page === 'accueil';
+    homeEl.hidden = !home;
+    catEl.hidden = home;
+
+    if (home) { homeEl.innerHTML = heroHTML(); return; }
+
+    var list = PROJECTS.filter(function(p){ return p.cat === page; });
+    $('cat-titre').textContent = catLabel(page);
+    $('cat-note').textContent = list.length ? list.length + (list.length > 1 ? ' projets' : ' projet') : 'Aucun projet pour l\'instant';
+    $('vues').hidden = !list.length;
+    $('vue-grille').setAttribute('aria-pressed', view === 'grille');
+    $('vue-index').setAttribute('aria-pressed', view === 'index');
+    gridEl.hidden = view !== 'grille' || !list.length;
+    indexEl.hidden = view !== 'index' || !list.length;
+
+    gridEl.innerHTML = list.map(function(p){
+      return '<li><button type="button" class="card" data-id="' + p.id + '">' + frame(p) + '</button></li>';
+    }).join('');
+
+    rowsEl.innerHTML = list.map(function(p){
+      return '<li><button type="button" class="row" data-id="' + p.id + '"><span class="ttl">' + name(p) + '</span>' +
+        '<span class="meta"><span>' + dur(p.dur) + '</span></span></button></li>';
+    }).join('');
+
+    setPreview(list[0]);
+  }
+
+  function go(target){
+    page = (target === 'accueil' || isCat(target)) ? target : 'accueil';
+    try { history.replaceState(null, '', '#' + page); } catch (err) {}
+    render();
+    try { window.scrollTo(0, 0); } catch (err) {}
+  }
+
+  function openSheet(p){
+    $('fiche-titre').innerHTML = name(p);
+    var plain = p.title ? (p.client ? p.client + ', ' : '') + p.title : p.client;
+    var player = p.vimeo
+      ? 'https://player.vimeo.com/video/' + encodeURIComponent(p.vimeo) + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0'
+      : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0&playsinline=1';
+    $('fiche-image').innerHTML = '<div class="player" style="aspect-ratio:' + p.w + '/' + p.h + ';width:min(100%,calc(72vh*' + (p.w / p.h).toFixed(4) + '))">' +
+      '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
+    $('fiche-lien').innerHTML = p.vimeo
+      ? '<a href="https://vimeo.com/' + encodeURIComponent(p.vimeo) + '" target="_blank" rel="noopener">Ouvrir sur Vimeo</a>'
+      : '<a href="https://youtu.be/' + encodeURIComponent(p.id) + '" target="_blank" rel="noopener">Ouvrir sur YouTube</a>';
+    var rows = [['Catégorie', catLabel(p.cat)]];
+    if (p.prod) rows.push(['Production', p.prod]);
+    rows.push(['Durée', dur(p.dur)], ['Format', ratio(p)]);
+    if (p.real) rows.push(['Réalisation', p.real]);
+    $('fiche-credits').innerHTML = rows.map(function(r){ return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('');
+    homeEl.classList.add('paused');
+    if (typeof dlg.showModal === 'function') { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', '');
+  }
+  function stopPlayer(){ $('fiche-image').innerHTML = ''; homeEl.classList.remove('paused'); } // vider la fiche arrête la vidéo
+  function closeSheet(){ if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open'); stopPlayer(); }
+  dlg.addEventListener('close', stopPlayer);
+
+  document.addEventListener('click', function(e){
+    var t = e.target;
+    var g = t.closest('[data-go]');
+    if (g) { go(g.getAttribute('data-go')); return; }
+    var sc = t.closest('[data-scroll]');
+    if (sc) {
+      var dest = $(sc.getAttribute('data-scroll'));
+      var calm = false;
+      try { calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (err) {}
+      if (dest) dest.scrollIntoView({behavior: calm ? 'auto' : 'smooth', block: 'start'});
+      return;
+    }
+    var vw = t.closest('[data-view]');
+    if (vw) {
+      view = vw.getAttribute('data-view');
+      try { localStorage.setItem('portfolio-vue', view); } catch (err) {}
+      render();
+      return;
+    }
+    var sg = t.closest('[data-seg]');
+    if (sg) { setHero(+sg.getAttribute('data-seg')); return; }
+    var item = t.closest('[data-id]');
+    if (item) { var p = byId(item.getAttribute('data-id')); if (p) openSheet(p); return; }
+    if (t === dlg || t.closest('#fiche-fermer')) closeSheet();
+  });
+
+  window.addEventListener('hashchange', function(){
+    var h = (location.hash || '').slice(1);
+    if ((h === 'accueil' || isCat(h)) && h !== page) { page = h; render(); }
+  });
+
+  // Index : l'aperçu suit la ligne survolée ou sélectionnée au clavier
+  function follow(e){ var r = e.target.closest && e.target.closest('.row'); if (r) setPreview(byId(r.getAttribute('data-id'))); }
+  rowsEl.addEventListener('pointerover', follow);
+  rowsEl.addEventListener('focusin', follow);
+
+  // Survol d'une image : la tête de lecture suit le curseur et le timecode défile
+  function reset(){
+    if (!last) return;
+    last.classList.remove('scrub');
+    last.style.removeProperty('--x');
+    var t = last.querySelector('.tc'); if (t) t.textContent = dur(+last.getAttribute('data-dur'));
+    last = null;
+  }
+  document.addEventListener('pointermove', function(e){
+    if (e.pointerType && e.pointerType !== 'mouse') return;
+    var f = e.target.closest ? e.target.closest('.frame') : null;
+    if (f !== last) reset();
+    if (!f) return;
+    var r = f.getBoundingClientRect();
+    var x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    f.style.setProperty('--x', x.toFixed(4));
+    f.classList.add('scrub');
+    var t = f.querySelector('.tc'); if (t) t.textContent = tc(x * +f.getAttribute('data-dur'));
+    last = f;
+  });
+  document.addEventListener('pointerleave', reset);
+
+  // Copier l'adresse
+  $('copier').addEventListener('click', function(){
+    var btn = this, el = $('adresse'), text = el.textContent;
+    function done(){ btn.textContent = 'Adresse copiée'; setTimeout(function(){ btn.textContent = "Copier l'adresse"; }, 1800); }
+    function select(){
+      try { var range = document.createRange(); range.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(range); } catch (err) {}
+      btn.textContent = 'Adresse sélectionnée';
+    }
+    try { navigator.clipboard.writeText(text).then(done, select); } catch (err) { select(); }
+  });
+
+  // Grain : une petite tuile de bruit, répétée sur toute la page
+  try {
+    var gc = document.createElement('canvas'); gc.width = gc.height = 180;
+    var gg = gc.getContext('2d'), gi = gg.createImageData(180, 180), gd = gi.data;
+    for (var n = 0; n < gd.length; n += 4) { var tone = Math.random() < .5 ? 0 : 255; gd[n] = gd[n + 1] = gd[n + 2] = tone; gd[n + 3] = Math.random() * 9; }
+    gg.putImageData(gi, 0, 0);
+    $('grain').style.backgroundImage = 'url(' + gc.toDataURL('image/png') + ')';
+  } catch (e) {}
+
+  // Timecode de l'en-tête : le temps passé sur le site, à 25 images par seconde
+  (function(){
+    var el = $('horloge'), calm = false, shown = -1, t0;
+    if (!el) return;
+    try { calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    if (calm || !window.requestAnimationFrame) return;
+    function tick(now){
+      if (t0 === undefined) t0 = now;
+      var f = Math.floor((now - t0) / 1000 * FPS);
+      if (f !== shown) {
+        shown = f;
+        var s = Math.floor(f / FPS);
+        el.textContent = pad(Math.floor(s / 3600)) + ':' + pad(Math.floor(s / 60) % 60) + ':' + pad(s % 60) + ':' + pad(f % FPS);
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  render();
+})();
+</script>
+</body>
+</html>
