@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>William Coutard, monteur vidéo à Paris</title>
-<meta name="description" content="Portfolio de William Coutard, monteur vidéo à Paris : commercials, fashion &amp; luxury, music videos.">
+<title>William Coutard, Editor</title>
+<meta name="description" content="William Coutard, video editor based in Paris. Commercials, fashion &amp; luxury, music videos.">
 <meta name="theme-color" content="#0D0F11">
-<meta property="og:title" content="William Coutard, monteur vidéo">
+<meta property="og:title" content="William Coutard, Editor">
 <meta property="og:description" content="Commercials, fashion &amp; luxury, music videos.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230D0F11'/%3E%3Cpath d='M12 9l12 7-12 7z' fill='%23E8EBEE'/%3E%3C/svg%3E">
@@ -197,10 +197,10 @@ dialog::backdrop{background:var(--scrim)}
   <header class="top">
     <div class="who">
       <h1><button type="button" id="nav-accueil" data-go="accueil">William Coutard</button></h1>
-      <span>Monteur vidéo · Paris</span>
+      <span>Editor</span>
       <span class="clock" id="horloge" aria-hidden="true">00:00:00:00</span>
     </div>
-    <nav class="menu" aria-label="Catégories">
+    <nav class="menu" aria-label="Categories">
       <button type="button" id="nav-commercials" data-go="commercials">Commercials</button>
       <button type="button" id="nav-fashion" data-go="fashion">Fashion &amp; Luxury</button>
       <button type="button" id="nav-clips" data-go="clips">Music Videos</button>
@@ -209,15 +209,15 @@ dialog::backdrop{background:var(--scrim)}
   </header>
 
   <main>
-    <section class="home" id="page-accueil" aria-label="Projets à la une"></section>
+    <section class="home" id="page-accueil" aria-label="Featured projects"></section>
 
     <section class="cat" id="page-cat" hidden>
       <div class="cat-head">
         <h2 id="cat-titre"></h2>
         <div class="bar">
           <span id="cat-note"></span>
-          <div class="views" id="vues" role="group" aria-label="Affichage">
-            <button type="button" id="vue-grille" data-view="grille">Grille</button>
+          <div class="views" id="vues" role="group" aria-label="View">
+            <button type="button" id="vue-grille" data-view="grille">Grid</button>
             <button type="button" id="vue-index" data-view="index">Index</button>
           </div>
         </div>
@@ -234,11 +234,11 @@ dialog::backdrop{background:var(--scrim)}
     <h2>Contact</h2>
     <div class="mail">
       <span class="addr" id="adresse">wileborgne@gmail.com</span>
-      <button type="button" id="copier">Copier l'adresse</button>
+      <button type="button" id="copier">Copy email</button>
     </div>
     <ul class="links">
       <li><b>Instagram</b> <a href="https://www.instagram.com/wileborgne/" target="_blank" rel="noopener">@wileborgne</a></li>
-      <li><b>Basé à</b> Paris</li>
+      <li><b>Based in</b> Paris</li>
     </ul>
   </footer>
 </div>
@@ -247,7 +247,7 @@ dialog::backdrop{background:var(--scrim)}
   <div class="sheet">
     <div class="sheet-head">
       <h2 id="fiche-titre"></h2>
-      <button type="button" class="close" id="fiche-fermer">Fermer</button>
+      <button type="button" class="close" id="fiche-fermer">Close</button>
     </div>
     <div id="fiche-image"></div>
     <p class="watch" id="fiche-lien"></p>
@@ -278,7 +278,7 @@ dialog::backdrop{background:var(--scrim)}
     if (Math.abs(r - 1) < .02) return '1:1';
     if (Math.abs(r - 9 / 16) < .02) return '9:16';
     if (Math.abs(r - 4 / 5) < .02) return '4:5';
-    return r.toFixed(2).replace('.', ',') + ':1';
+    return r.toFixed(2) + ':1';
   }
 
   // Agrandit l'aperçu 16 x 9 par doublements successifs pour obtenir une image douce
@@ -336,7 +336,7 @@ dialog::backdrop{background:var(--scrim)}
   function heroHTML(){
     var p = REEL[heroIdx];
     return '<button type="button" class="card hero" id="une" data-id="' + p.id + '">' + frame(p, false, heroMeta(p)) + '</button>' +
-      '<div class="reel" role="group" aria-label="Passer à un autre projet">' + REEL.map(function(q, i){
+      '<div class="reel" role="group" aria-label="Go to another project">' + REEL.map(function(q, i){
         return '<button type="button" class="seg' + (i < heroIdx ? ' done' : i === heroIdx ? ' on' : '') + '" id="seg-' + i + '" data-seg="' + i +
           '" style="flex-grow:' + q.dur + '" aria-label="' + esc(q.title ? (q.client ? q.client + ', ' : '') + q.title : q.client) + '"><i></i></button>';
       }).join('') + '</div>';
@@ -397,7 +397,7 @@ dialog::backdrop{background:var(--scrim)}
 
     var list = PROJECTS.filter(function(p){ return p.cat === page; });
     $('cat-titre').textContent = catLabel(page);
-    $('cat-note').textContent = list.length ? list.length + (list.length > 1 ? ' projets' : ' projet') : 'Aucun projet pour l\'instant';
+    $('cat-note').textContent = list.length ? list.length + (list.length > 1 ? ' projects' : ' project') : 'No projects yet';
     $('vues').hidden = !list.length;
     $('vue-grille').setAttribute('aria-pressed', view === 'grille');
     $('vue-index').setAttribute('aria-pressed', view === 'index');
@@ -432,10 +432,10 @@ dialog::backdrop{background:var(--scrim)}
     $('fiche-image').innerHTML = '<div class="player" style="aspect-ratio:' + p.w + '/' + p.h + ';width:min(100%,calc(72vh*' + (p.w / p.h).toFixed(4) + '))">' +
       '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
     $('fiche-lien').hidden = true; // pas de lien vers YouTube ou Vimeo : la vidéo se lit dans la fiche
-    var rows = [['Catégorie', catLabel(p.cat)]];
+    var rows = [['Category', catLabel(p.cat)]];
     if (p.prod) rows.push(['Production', p.prod]);
-    rows.push(['Durée', dur(p.dur)], ['Format', ratio(p)]);
-    if (p.real) rows.push(['Réalisation', p.real]);
+    rows.push(['Duration', dur(p.dur)], ['Format', ratio(p)]);
+    if (p.real) rows.push(['Director', p.real]);
     $('fiche-credits').innerHTML = rows.map(function(r){ return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('');
     homeEl.classList.add('paused');
     if (typeof dlg.showModal === 'function') { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', '');
@@ -505,10 +505,10 @@ dialog::backdrop{background:var(--scrim)}
   // Copier l'adresse
   $('copier').addEventListener('click', function(){
     var btn = this, el = $('adresse'), text = el.textContent;
-    function done(){ btn.textContent = 'Adresse copiée'; setTimeout(function(){ btn.textContent = "Copier l'adresse"; }, 1800); }
+    function done(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy email'; }, 1800); }
     function select(){
       try { var range = document.createRange(); range.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(range); } catch (err) {}
-      btn.textContent = 'Adresse sélectionnée';
+      btn.textContent = 'Email selected';
     }
     try { navigator.clipboard.writeText(text).then(done, select); } catch (err) { select(); }
   });
