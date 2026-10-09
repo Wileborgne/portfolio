@@ -182,11 +182,13 @@ dialog::backdrop{background:var(--scrim)}
 @media (max-width:520px){
   .top{gap:14px}
   .who{width:100%;gap:4px 12px}
-  .who .clock{display:none}
+  .who .clock{margin-left:auto}
   .menu{width:100%;justify-content:space-between;gap:8px 10px;font-size:.6875rem;letter-spacing:.02em}
   .hero .frame{aspect-ratio:4/5;max-height:none}
   .hero .frame .on-ttl{font-size:1.6rem}
 }
+@media (max-width:379px){.who{gap:4px 8px}}
+@media (max-width:351px){.who .clock{display:none}}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important}.grain{animation:none}.seg.on i::after{animation:none;transform:scaleX(1)}}
 
