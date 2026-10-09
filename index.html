@@ -159,6 +159,20 @@ dialog::backdrop{background:var(--scrim)}
 .links b{font-weight:400;color:var(--fg)}
 
 /* Grain de pellicule : une trame de bruit très légère posée sur toute la page */
+/* Écran d'ouverture : un « export » de 0 à 100 % avant d'arriver sur le site (se passe d'un clic ou d'une touche) */
+html.intro-on{overflow:hidden}
+html.intro-on .seg.on i::after{animation-play-state:paused}
+.intro{position:fixed;inset:0;z-index:4;display:grid;place-content:center;justify-items:center;gap:clamp(22px,4vh,34px);padding:24px;background:var(--bg);color:var(--fg)}
+.intro[hidden]{display:none}
+.intro-who,.intro-bar{opacity:0;transition:opacity .25s}
+.intro.ready .intro-who,.intro.ready .intro-bar{opacity:1}
+.intro-who{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;gap:6px 16px}
+.intro-who b{font-size:clamp(1.25rem,3.4vw,2rem);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.intro-who span{font-family:var(--font-mono);font-size:clamp(.75rem,1.4vw,.9375rem);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.intro-bar{width:min(420px,72vw);display:grid;gap:10px}
+.intro-bar i{display:block;position:relative;height:2px;overflow:hidden;background:var(--line)}
+.intro-bar i::after{content:"";position:absolute;inset:0;background:var(--fg);transform:scaleX(var(--p,0));transform-origin:left center}
+.intro-bar p{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:var(--t-small);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
 .grain{position:fixed;inset:0;z-index:5;pointer-events:none;background-repeat:repeat;animation:grain .9s steps(1) infinite}
 @keyframes grain{0%{background-position:0 0}17%{background-position:-41px 67px}33%{background-position:83px -29px}50%{background-position:-19px -91px}67%{background-position:57px 43px}83%{background-position:-73px 11px}}
 
@@ -211,6 +225,56 @@ dialog::backdrop{background:var(--scrim)}
 </head>
 <body>
 <div class="grain" id="grain" aria-hidden="true"></div>
+<div class="intro" id="intro" aria-hidden="true" hidden>
+  <div class="intro-who"><b>William Coutard</b><span>Editor</span></div>
+  <div class="intro-bar"><i id="intro-fill"></i><p><span>Export</span><span id="intro-pct">0%</span></p></div>
+</div>
+<script>
+// Écran d'ouverture. Pour le retirer : supprimer ce bloc <script> (le site s'affiche alors directement).
+(function(){
+  var d = document, root = d.documentElement, el = d.getElementById('intro');
+  var calm = false; try { calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (!el || calm || !window.requestAnimationFrame) return;
+  var fill = d.getElementById('intro-fill'), pct = d.getElementById('intro-pct');
+  var DUR = 2000; // durée de l'export, en millisecondes
+  // Progression irrégulière, comme un vrai export : [moment, avancement] de 0 à 1
+  var KEYS = [[0,0],[.12,.18],[.3,.27],[.52,.66],[.68,.71],[.88,.96],[1,1]];
+  var start = null, shown = false, done = false, probe = null, imgOk = false;
+  el.hidden = false; root.classList.add('intro-on');
+  function at(t){
+    for (var i = 1; i < KEYS.length; i++) if (t <= KEYS[i][0]) {
+      var a = KEYS[i - 1], b = KEYS[i];
+      return a[1] + (b[1] - a[1]) * (t - a[0]) / (b[0] - a[0]);
+    }
+    return 1;
+  }
+  function set(p){ fill.style.setProperty('--p', p.toFixed(4)); pct.textContent = Math.round(p * 100) + '%'; }
+  function close(){
+    el.hidden = true; root.classList.remove('intro-on');
+    try { window.dispatchEvent(new Event('intro:done')); } catch (e) {}
+  }
+  function finish(now){ if (done) return; done = true; set(1); setTimeout(close, now ? 0 : 280); }
+  function tick(now){
+    if (done) return;
+    if (start === null) start = now;
+    // On attend aussi que la première image de l'accueil soit chargée (4,5 s au plus)
+    if (!probe) {
+      var h = d.querySelector('#une .img'), m = h && /url\(["']?([^"')]+)/.exec(h.style.backgroundImage);
+      if (m) { probe = new Image(); probe.onload = probe.onerror = function(){ imgOk = true; }; probe.src = m[1]; }
+    }
+    var t = Math.min(1, (now - start) / DUR), p = at(t);
+    if (t >= 1 && probe && !imgOk && now - start < 4500) p = .99;
+    set(p);
+    if (p >= 1) finish(); else requestAnimationFrame(tick);
+  }
+  function show(){ if (shown) return; shown = true; el.classList.add('ready'); requestAnimationFrame(tick); }
+  // Attendre les polices (0,7 s au plus) pour que le nom s'affiche directement dans la bonne typo
+  try { Promise.all([d.fonts.load('600 1em Archivo'), d.fonts.load('1em "DM Mono"')]).then(show, show); } catch (e) {}
+  setTimeout(show, 700);
+  el.addEventListener('pointerdown', function(){ finish(true); });
+  d.addEventListener('keydown', function(){ finish(true); });
+})();
+</script>
 <div class="wrap">
   <header class="top">
     <div class="who">
@@ -605,6 +669,7 @@ dialog::backdrop{background:var(--scrim)}
     if (!el) return;
     try { calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
     if (calm || !window.requestAnimationFrame) return;
+    window.addEventListener('intro:done', function(){ t0 = undefined; }); // le compteur repart de zéro après l'écran d'ouverture
     function tick(now){
       if (t0 === undefined) t0 = now;
       var f = Math.floor((now - t0) / 1000 * FPS);
