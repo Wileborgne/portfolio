@@ -332,6 +332,8 @@ dialog::backdrop{background:var(--scrim)}
   // Accueil : un projet à la fois, et une bobine dessous pour passer de l'un à l'autre
   var REEL = REEL_IDS.map(byId).filter(Boolean), heroIdx = 0;
   if (!REEL.length) REEL = PROJECTS.slice();
+  // Charger d'avance les images de la bobine, pour que chaque coupe soit nette dès la première fois
+  REEL.forEach(function(q){ var im = new Image(); im.src = 'img/' + q.id + '.jpg'; });
   function heroMeta(p){ return esc(catLabel(p.cat)) + ' · ' + pad(heroIdx + 1) + '/' + pad(REEL.length); }
   function heroHTML(){
     var p = REEL[heroIdx];
@@ -411,7 +413,7 @@ dialog::backdrop{background:var(--scrim)}
       ? 'https://player.vimeo.com/video/' + encodeURIComponent(p.vimeo) + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0'
       : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0&playsinline=1';
     $('fiche-image').innerHTML = '<div class="player" style="aspect-ratio:' + p.w + '/' + p.h + ';width:min(100%,calc(72vh*' + (p.w / p.h).toFixed(4) + '))">' +
-      '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
+      '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
     $('fiche-lien').innerHTML = p.vimeo
       ? '<a href="https://vimeo.com/' + encodeURIComponent(p.vimeo) + '" target="_blank" rel="noopener">Ouvrir sur Vimeo</a>'
       : '<a href="https://youtu.be/' + encodeURIComponent(p.id) + '" target="_blank" rel="noopener">Ouvrir sur YouTube</a>';
