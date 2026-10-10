@@ -339,7 +339,11 @@ html.intro-on .seg.on i::after{animation-play-state:paused}
   </div>
 </dialog>
 
-<script src="projets.js"></script>
+<script>
+// Le contenu (projets.js) est redemandé à chaque visite, pour qu'une modification apparaisse tout de suite
+// au lieu de rester jusqu'à dix minutes dans la mémoire du navigateur.
+document.write('<script src="projets.js?v=' + Math.floor(Date.now() / 60000) + '"><\/script>');
+</script>
 <script>
 (function(){
   var FPS = 25; // cadence utilisée pour le timecode au survol
