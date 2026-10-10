@@ -512,8 +512,12 @@ html.intro-on .seg.on i::after{animation-play-state:paused}
   function openSheet(p){
     $('fiche-titre').innerHTML = name(p);
     var plain = p.title ? (p.client ? p.client + ', ' : '') + p.title : p.client;
+    // Sur téléphone et tablette, une vidéo lancée automatiquement démarre sans le son (règle des navigateurs mobiles).
+    // On n'y lance donc pas la lecture : le visiteur appuie sur lecture dans le lecteur, et le son est toujours là.
+    var tactile = false;
+    try { tactile = window.matchMedia('(hover: none) and (pointer: coarse)').matches; } catch (e) {}
     var player = p.vimeo
-      ? 'https://player.vimeo.com/video/' + encodeURIComponent(p.vimeo) + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0'
+      ? 'https://player.vimeo.com/video/' + encodeURIComponent(p.vimeo) + '?autoplay=' + (tactile ? 0 : 1) + '&dnt=1&title=0&byline=0&portrait=0'
       : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0&playsinline=1';
     $('fiche-image').innerHTML = '<div class="player" style="aspect-ratio:' + p.w + '/' + p.h + ';width:min(100%,calc(72vh*' + (p.w / p.h).toFixed(4) + '));background-image:url(img/' + p.id + '.jpg)">' +
       '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" onload="this.classList.add(\'on\')"></iframe></div>';
