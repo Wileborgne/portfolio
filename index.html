@@ -523,6 +523,7 @@ html.intro-on .seg.on i::after{animation-play-state:paused}
       '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" onload="this.classList.add(\'on\')"></iframe></div>';
     $('fiche-lien').hidden = true; // pas de lien vers YouTube ou Vimeo : la vidéo se lit dans la fiche
     var rows = [['Category', catLabel(p.cat)]];
+    if (p.real) rows.push(['Director', p.real]);
     if (p.prod) rows.push(['Production', p.prod]);
     if (p.post) rows.push(['Postproduction', p.post]);
     rows.push(['Duration', dur(p.dur)]);

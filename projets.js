@@ -14,6 +14,7 @@
 //   client  ce qui s'affiche en caractères droits        (ex. 'Dior')
 //   title   le titre du projet, affiché après le client ; peut être vide (ex. 'Cruise 2025, Cutdown')
 //   cat     'commercials', 'fashion' ou 'clips'
+//   real    réalisateur ou réalisatrice (facultatif), affiché sous « Director »
 //   prod    société de production (facultatif)
 //   post    société de postproduction (facultatif)
 //   dur     durée en secondes
