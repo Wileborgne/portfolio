@@ -69,5 +69,6 @@ window.PORTFOLIO = {
     {id:'v1234393872', vimeo:'1234393872', client:'Sean', title:'CDC', cat:'clips', prod:'Tierse', dur:211, w:1440, h:1080},
     {id:'v1234393874', vimeo:'1234393874', client:'Teodore x Green Montana', title:'MM', cat:'clips', prod:'Tierse', dur:121, w:1440, h:1080},
     {id:'v1234397501', vimeo:'1234397501', client:'Silva', title:'Bedouin', cat:'clips', prod:'Ocurens', post:'Monumental Fx', dur:162, w:1440, h:1080},
+    {id:'v1234607578', vimeo:'1234607578', client:'Louane', title:'Maman', cat:'clips', dur:185, w:3840, h:2160},
   ]
 };
