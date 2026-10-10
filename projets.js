@@ -64,11 +64,11 @@ window.PORTFOLIO = {
     {id:'v1234393871', vimeo:'1234393871', client:'La Fève', title:'2026', cat:'clips', prod:'Henry.tv', post:'Disguys Fx', dur:218, w:1920, h:1080},
     {id:'v1234397502', vimeo:'1234397502', client:'Eva', title:'Body', cat:'clips', prod:'Henry.tv', post:'Disguys Fx', dur:145, w:1920, h:1080},
     {id:'v1234393873', vimeo:'1234393873', client:'Yvnnis', title:'Emoticone', cat:'clips', prod:'Dépendant.tv', post:'Mathematic.tv', dur:155, w:1440, h:1080},
+    {id:'v1234607578', vimeo:'1234607578', client:'Louane', title:'Maman', cat:'clips', prod:'Pelican Paris', dur:185, w:3840, h:2160},
     {id:'iV9vFxP0dE8', vimeo:'1234453757', client:'TH', title:'Pokemon (Dircut)', cat:'clips', prod:'Ocurens', post:'Monumental Fx', dur:179, w:2880, h:2160},
     {id:'9r8XVoGtFAY', vimeo:'1234453452', client:'Lazarra', title:'Tu t’en iras', cat:'clips', prod:'Trichrome', dur:282, w:1920, h:1080},
     {id:'v1234393872', vimeo:'1234393872', client:'Sean', title:'CDC', cat:'clips', prod:'Tierse', dur:211, w:1440, h:1080},
     {id:'v1234393874', vimeo:'1234393874', client:'Teodore x Green Montana', title:'MM', cat:'clips', prod:'Tierse', dur:121, w:1440, h:1080},
     {id:'v1234397501', vimeo:'1234397501', client:'Silva', title:'Bedouin', cat:'clips', prod:'Ocurens', post:'Monumental Fx', dur:162, w:1440, h:1080},
-    {id:'v1234607578', vimeo:'1234607578', client:'Louane', title:'Maman', cat:'clips', dur:185, w:3840, h:2160},
   ]
 };
