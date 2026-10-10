@@ -219,8 +219,10 @@ html.intro-on .seg.on i::after{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}.grain{animation:none}.seg.on i::after{animation:none;transform:scaleX(1)}}
 
 /* Lecteur vidéo de la fiche projet */
-.player{position:relative;max-width:100%;background:#000}
-.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* La vignette reste affichée pendant que le lecteur Vimeo se charge, puis le lecteur apparaît en fondu (pas d'écran blanc) */
+.player{position:relative;max-width:100%;background:#000 center/cover no-repeat}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;color-scheme:light;opacity:0;transition:opacity .3s}
+.player iframe.on{opacity:1}
 </style>
 </head>
 <body>
@@ -513,8 +515,8 @@ html.intro-on .seg.on i::after{animation-play-state:paused}
     var player = p.vimeo
       ? 'https://player.vimeo.com/video/' + encodeURIComponent(p.vimeo) + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0'
       : 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(p.id) + '?autoplay=1&rel=0&playsinline=1';
-    $('fiche-image').innerHTML = '<div class="player" style="aspect-ratio:' + p.w + '/' + p.h + ';width:min(100%,calc(72vh*' + (p.w / p.h).toFixed(4) + '))">' +
-      '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
+    $('fiche-image').innerHTML = '<div class="player" style="aspect-ratio:' + p.w + '/' + p.h + ';width:min(100%,calc(72vh*' + (p.w / p.h).toFixed(4) + '));background-image:url(img/' + p.id + '.jpg)">' +
+      '<iframe src="' + player + '" title="' + esc(plain) + '" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" onload="this.classList.add(\'on\')"></iframe></div>';
     $('fiche-lien').hidden = true; // pas de lien vers YouTube ou Vimeo : la vidéo se lit dans la fiche
     var rows = [['Category', catLabel(p.cat)]];
     if (p.prod) rows.push(['Production', p.prod]);
