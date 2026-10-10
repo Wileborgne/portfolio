@@ -527,7 +527,6 @@ html.intro-on .seg.on i::after{animation-play-state:paused}
     if (p.prod) rows.push(['Production', p.prod]);
     if (p.post) rows.push(['Postproduction', p.post]);
     rows.push(['Duration', dur(p.dur)]);
-    if (p.real) rows.push(['Director', p.real]);
     $('fiche-credits').innerHTML = rows.map(function(r){ return '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('');
     homeEl.classList.add('paused');
     if (typeof dlg.showModal === 'function') { if (!dlg.open) dlg.showModal(); } else dlg.setAttribute('open', '');
