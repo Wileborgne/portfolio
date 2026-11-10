@@ -62,6 +62,7 @@ window.PORTFOLIO = {
     {id:'i_wU6QTO8Xk', vimeo:'1234453407', client:'Dior', title:'Pre-Fall 2025, Cutdown', cat:'fashion', real:'Leyla Sassi', prod:'Tender Night', dur:35, w:1080, h:1350, pos:'50% 32%'},
     {id:'ORqMHsj87Wk', vimeo:'1234453389', client:'Dior', title:'Cruise 2025, Cutdown', cat:'fashion', real:'Leyla Sassi', prod:'Tender Night', dur:27, w:1080, h:1920, pos:'50% 38%'},
     {id:'THnRFZ2od44', vimeo:'1234453771', client:'Vivienne Westwood', title:'AW25-26, Cutdown', cat:'fashion', real:'Fabrice Davillé', prod:'Studio Prémices', dur:24, w:1080, h:1350, pos:'50% 12%'},
+    {id:'v1245505727', vimeo:'1245505727', client:'Drôle de Monsieur', title:'The Repetition', cat:'fashion', real:'Gabriel Trautmann', prod:'Vanta.tv', dur:60, w:3840, h:2160},
     {id:'v1234393871', vimeo:'1234393871', client:'La Fève', title:'2026', cat:'clips', real:'Rayan Rey', prod:'Henry.tv', post:'Disguys Fx', dur:218, w:1920, h:1080},
     {id:'v1234397502', vimeo:'1234397502', client:'Eva', title:'Body', cat:'clips', prod:'Vanta.tv', post:'Disguys Fx', dur:145, w:1920, h:1080},
     {id:'v1234393873', vimeo:'1234393873', client:'Yvnnis', title:'Emoticone', cat:'clips', real:'Léa Esmaili', prod:'Dépendant.tv', post:'Mathematic.tv', dur:155, w:1440, h:1080},
